@@ -1,0 +1,303 @@
+﻿@model IEnumerable<BookLibraryMvcProj.Models.BookBorrowing>
+
+@{
+    ViewData["Title"] = "Book Borrowings";
+}
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-12">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2 class="text-primary">
+                    <i class="fas fa-book-reader"></i> 📚 Book Borrowings
+                </h2>
+                <a href="@Url.Action("Index", "BookMvc")" class="btn btn-success">
+                    <i class="fas fa-plus"></i> ➕ Borrow New Book
+                </a>
+            </div>
+
+            <!-- Success/Error Messages -->
+            @if (TempData["SuccessMessage"] != null)
+            {
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <i class="fas fa-check-circle"></i>
+                    <strong>✅ Success!</strong> @TempData["SuccessMessage"]
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+            }
+
+            @if (TempData["ErrorMessage"] != null)
+            {
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <strong>❌ Error!</strong> @TempData["ErrorMessage"]
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+            }
+
+            @if (ViewBag.ErrorMessage != null)
+            {
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    <i class="fas fa-exclamation-circle"></i>
+                    <strong>⚠️ Warning!</strong> @ViewBag.ErrorMessage
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+            }
+
+            <!-- Filter Tabs -->
+            <ul class="nav nav-pills mb-3" id="statusFilter" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="all-tab" data-bs-toggle="pill" data-bs-target="#all-records" type="button">
+                        📋 All Records
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="borrowed-tab" data-bs-toggle="pill" data-bs-target="#borrowed-records" type="button">
+                        📕 Borrowed
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="available-tab" data-bs-toggle="pill" data-bs-target="#available-records" type="button">
+                        📗 Available
+                    </button>
+                </li>
+            </ul>
+
+            <div class="card shadow-lg border-0">
+                <div class="card-body p-0">
+                    @if (Model != null && Model.Any())
+                    {
+                        <div class="table-responsive">
+                            <table class="table table-hover mb-0" id="borrowingTable">
+                                <thead class="table-dark">
+                                    <tr>
+                                        <th><i class="fas fa-hashtag"></i> Book ID</th>
+                                        <th><i class="fas fa-book"></i> Book Title</th>
+                                        <th><i class="fas fa-user"></i> Borrower Name</th>
+                                        <th><i class="fas fa-phone"></i> Phone</th>
+                                        <th><i class="fas fa-calendar-alt"></i> Borrow Date</th>
+                                        <th><i class="fas fa-calendar-check"></i> Return Date</th>
+                                        <th><i class="fas fa-info-circle"></i> Status</th>
+                                        <th><i class="fas fa-cogs"></i> Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var borrowing in Model)
+                                    {
+                                        <tr class="@(borrowing.Status == "Borrowed" ? "table-warning" : "table-success")"
+                                            data-status="@borrowing.Status.ToLower()">
+                                            <td>
+                                                <span class="badge bg-primary">#@borrowing.BookId</span>
+                                            </td>
+                                            <td>
+                                                <strong>@(borrowing.Book?.Title ?? "N/A")</strong>
+                                            </td>
+                                            <td>
+                                                <i class="fas fa-user-circle text-primary"></i>
+                                                @borrowing.BorrowerName
+                                            </td>
+                                            <td>
+                                                <i class="fas fa-phone text-success"></i>
+                                                @borrowing.BorrowerNumber
+                                            </td>
+                                            <td>
+                                                <i class="fas fa-calendar text-info"></i>
+                                                @borrowing.BorrowDate.ToString("MM/dd/yyyy HH:mm")
+                                            </td>
+                                            <td>
+                                                @if (borrowing.ReturnDate.HasValue)
+                                                {
+                                                    <i class="fas fa-calendar-check text-success"></i>
+                                                    <span class="text-success">
+                                                        @borrowing.ReturnDate.Value.ToString("MM/dd/yyyy HH:mm")
+                                                    </span>
+                                                }
+                                                else
+                                                {
+                                                    <span class="text-muted">
+                                                        <i class="fas fa-clock"></i> Not returned
+                                                    </span>
+                                                }
+                                            </td>
+                                            <td>
+                                                @if (borrowing.Status == "Borrowed")
+                                                {
+                                                    <span class="badge bg-danger fs-6">📕 Borrowed</span>
+                                                }
+                                                else
+                                                {
+                                                    <span class="badge bg-success fs-6">📗 Available</span>
+                                                }
+                                            </td>
+                                            <td>
+                                                <div class="btn-group" role="group">
+                                                    <!-- View Details -->
+                                                    <a href="@Url.Action("Details", new { id = borrowing.BookId })"
+                                                       class="btn btn-info btn-sm" title="View Details">
+                                                        <i class="fas fa-eye"></i> View
+                                                    </a>
+
+                                                    <!-- Edit -->
+                                                    <a href="@Url.Action("Edit", new { id = borrowing.BookId })"
+                                                       class="btn btn-warning btn-sm" title="Edit Record">
+                                                        <i class="fas fa-edit"></i> Edit
+                                                    </a>
+
+                                                    <!-- Return Book (only if borrowed) -->
+                                                    @if (borrowing.Status == "Borrowed")
+                                                    {
+                                                        <form method="post" action="@Url.Action("ReturnBook", new { id = borrowing.BookId })"
+                                                              style="display: inline;">
+                                                            @Html.AntiForgeryToken()
+                                                            <button type="submit" class="btn btn-success btn-sm"
+                                                                    title="Return Book"
+                                                                    onclick="return confirm('Are you sure you want to mark this book as returned?')">
+                                                                <i class="fas fa-undo"></i> Return
+                                                            </button>
+                                                        </form>
+                                                    }
+
+                                                    <!-- Delete -->
+                                                    <a href="@Url.Action("Delete", new { id = borrowing.BookId })"
+                                                       class="btn btn-danger btn-sm" title="Delete Record">
+                                                        <i class="fas fa-trash"></i> Delete
+                                                    </a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="text-center py-5">
+                            <i class="fas fa-book-open fa-3x text-muted mb-3"></i>
+                            <h4 class="text-muted">No borrowing records found</h4>
+                            <p class="text-muted">Start by borrowing a book from the Books page!</p>
+                            <a href="@Url.Action("Index", "BookMvc")" class="btn btn-primary btn-lg">
+                                <i class="fas fa-book"></i> Browse Books
+                            </a>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            // Filter functionality
+            $('#statusFilter button').on('click', function () {
+                var filter = $(this).attr('id');
+                var rows = $('#borrowingTable tbody tr');
+
+                if (filter === 'all-tab') {
+                    rows.show();
+                } else if (filter === 'borrowed-tab') {
+                    rows.hide();
+                    rows.filter('[data-status="borrowed"]').show();
+                } else if (filter === 'available-tab') {
+                    rows.hide();
+                    rows.filter('[data-status="available"]').show();
+                }
+
+                // Update counts
+                updateCounts();
+            });
+
+            function updateCounts() {
+                var totalRows = $('#borrowingTable tbody tr').length;
+                var borrowedRows = $('#borrowingTable tbody tr[data-status="borrowed"]').length;
+                var availableRows = $('#borrowingTable tbody tr[data-status="available"]').length;
+
+                $('#all-tab').html('📋 All Records (' + totalRows + ')');
+                $('#borrowed-tab').html('📕 Borrowed (' + borrowedRows + ')');
+                $('#available-tab').html('📗 Available (' + availableRows + ')');
+            }
+
+            // Initialize counts
+            updateCounts();
+
+            // Auto-hide alerts after 5 seconds
+            setTimeout(function () {
+                $('.alert').fadeOut();
+            }, 5000);
+        });
+    </script>
+
+    <style>
+        /* Enhanced card styling */
+        .card {
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        /* Table enhancements */
+        .table th {
+            border-top: none;
+            background: linear-gradient(135deg, #343a40 0%, #495057 100%);
+            color: white;
+            font-weight: 600;
+        }
+
+        .table-hover tbody tr:hover {
+            background-color: rgba(0,123,255,0.1) !important;
+            transform: scale(1.01);
+            transition: all 0.2s ease;
+        }
+
+        /* Status badges */
+        .badge {
+            padding: 0.5em 0.8em;
+            font-size: 0.85em;
+        }
+
+        /* Button group styling */
+        .btn-group .btn {
+            margin-right: 2px;
+        }
+
+        .btn-sm {
+            padding: 0.25rem 0.5rem;
+            font-size: 0.8rem;
+        }
+
+        /* Filter tabs */
+        .nav-pills .nav-link {
+            border-radius: 25px;
+            margin-right: 10px;
+            transition: all 0.3s ease;
+        }
+
+            .nav-pills .nav-link.active {
+                background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+                box-shadow: 0 4px 12px rgba(0,123,255,0.3);
+            }
+
+        /* Alert styling */
+        .alert {
+            border-radius: 10px;
+            border: none;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        /* Icon spacing */
+        .fas {
+            margin-right: 5px;
+        }
+
+        /* Row animation */
+        tbody tr {
+            transition: all 0.2s ease;
+        }
+
+        /* Empty state styling */
+        .text-center i.fa-3x {
+            opacity: 0.3;
+        }
+    </style>
+}

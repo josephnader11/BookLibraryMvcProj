@@ -1,0 +1,170 @@
+﻿@model BookLibraryMvcProj.Models.Book
+
+@{
+    ViewData["Title"] = "Book Details";
+}
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-10 mx-auto">
+            <div class="card shadow-lg">
+                <div class="card-header bg-info text-white">
+                    <h2 class="mb-0">👁 Book Details</h2>
+                </div>
+                <div class="card-body bg-white">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h3 class="card-title text-primary mb-4">📖 @Model.Title</h3>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="detail-item mb-4">
+                                        <div class="detail-label">📅 Publication Year:</div>
+                                        <div class="detail-value">
+                                            @if (Model.Year.HasValue)
+                                            {
+                                                <span class="value-text">@Model.Year</span>
+                                            }
+                                            else
+                                            {
+                                                <span class="no-data">Not specified</span>
+                                            }
+                                        </div>
+                                    </div>
+
+                                    <div class="detail-item mb-4">
+                                        <div class="detail-label">✍️ Author:</div>
+                                        <div class="detail-value">
+                                            @if (Model.Author != null && !string.IsNullOrWhiteSpace(Model.Author.Name))
+                                            {
+                                                <span class="value-text">@Model.Author.Name</span>
+                                            }
+                                            else if (Model.AuthorId.HasValue)
+                                            {
+                                                <span class="error-text">Author not found (ID: @Model.AuthorId)</span>
+                                            }
+                                            else
+                                            {
+                                                <span class="no-data">No author assigned</span>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="detail-item mb-4">
+                                        <div class="detail-label">📚 Category:</div>
+                                        <div class="detail-value">
+                                            @if (Model.BookCategory != null && !string.IsNullOrWhiteSpace(Model.BookCategory.Name))
+                                            {
+                                                <span class="value-text">@Model.BookCategory.Name</span>
+                                            }
+                                            else if (Model.BookCategoryId > 0)
+                                            {
+                                                <span class="error-text">Category not found (ID: @Model.BookCategoryId)</span>
+                                            }
+                                            else
+                                            {
+                                                <span class="no-data">No category assigned</span>
+                                            }
+                                        </div>
+                                    </div>
+
+                                    <div class="detail-item mb-4">
+                                        <div class="detail-label">🆔 Book ID:</div>
+                                        <div class="detail-value">
+                                            <span class="value-text">@Model.Id</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer bg-light">
+                    <div class="btn-group" role="group">
+                        <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">
+                            ✏️ Edit
+                        </a>
+                        <a asp-action="Index" class="btn btn-secondary">
+                            🔙 Back to List
+                        </a>
+                        @if (Model.BookCategory != null && Model.BookCategoryId > 0)
+                        {
+                            <a asp-controller="BookCategory" asp-action="Details" asp-route-id="@Model.BookCategoryId" class="btn btn-info">
+                                📚 View Category
+                            </a>
+                        }
+                        @if (Model.Author != null && Model.AuthorId.HasValue)
+                        {
+                            <a asp-controller="Author" asp-action="Details" asp-route-id="@Model.AuthorId" class="btn btn-success">
+                                👤 View Author
+                            </a>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .detail-item {
+        border-left: 4px solid #007bff;
+        padding-left: 15px;
+        background-color: #f8f9fa;
+        padding: 10px 15px;
+        border-radius: 5px;
+        margin-bottom: 15px !important;
+    }
+
+    .detail-label {
+        font-weight: bold;
+        color: #495057 !important;
+        font-size: 14px;
+        margin-bottom: 5px;
+    }
+
+    .detail-value {
+        margin-top: 8px;
+    }
+
+    .value-text {
+        color: #212529 !important;
+        font-size: 16px;
+        font-weight: 500;
+        background-color: #e3f2fd;
+        padding: 4px 8px;
+        border-radius: 4px;
+        display: inline-block;
+    }
+
+    .no-data {
+        color: #6c757d !important;
+        font-style: italic;
+        font-size: 14px;
+    }
+
+    .error-text {
+        color: #dc3545 !important;
+        font-weight: 500;
+        font-size: 14px;
+    }
+
+    .card-body {
+        background-color: #ffffff !important;
+    }
+
+    .card-title {
+        color: #007bff !important;
+    }
+
+    /* Ensure all text is visible */
+    * {
+        color: inherit !important;
+    }
+
+    .container * {
+        text-shadow: none !important;
+    }
+</style>

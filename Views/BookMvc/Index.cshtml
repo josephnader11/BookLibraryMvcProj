@@ -1,0 +1,844 @@
+﻿@model IEnumerable<BookLibraryMvcProj.Models.Book>
+
+@{
+    ViewData["Title"] = "Books";
+}
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-12">
+            <!-- Header -->
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2 class="text-primary">
+                    <i class="fas fa-book"></i> 📚 Books
+                    <span id="bookCount" class="badge bg-primary ms-2">@Model.Count()</span>
+                </h2>
+                <a asp-action="Create" class="btn btn-success">
+                    <i class="fas fa-plus"></i> ➕ Add New Book
+                </a>
+            </div>
+
+            <!-- Search Bar -->
+            <div class="card mb-4 shadow-sm">
+                <div class="card-body">
+                    <div class="row align-items-center">
+                        <div class="col-md-8">
+                            <div class="input-group input-group-lg">
+                                <span class="input-group-text bg-primary text-white">
+                                    <i class="fas fa-search"></i>
+                                </span>
+                                <input type="text" 
+                                       id="bookSearch" 
+                                       class="form-control form-control-lg" 
+                                       placeholder="🔍 Search books by title, author, or year..." 
+                                       autocomplete="off">
+                                <button class="btn btn-outline-secondary" type="button" id="clearSearch">
+                                    <i class="fas fa-times"></i> Clear
+                                </button>
+                            </div>
+                            <small class="text-muted mt-1 d-block">
+                                <i class="fas fa-info-circle"></i> 
+                                Search by book title, author name, or publication year
+                            </small>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="text-end">
+                                <div id="searchResults" class="h5 mb-0 text-info">
+                                    <i class="fas fa-books"></i> 
+                                    Showing <span id="visibleCount">@Model.Count()</span> of <span id="totalCount">@Model.Count()</span> books
+                                </div>
+                                <small class="text-muted">Search results</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Books Table -->
+            <div class="card shadow">
+                <div class="card-body p-0">
+                    @if (Model != null && Model.Any())
+                    {
+                        <div class="table-responsive">
+                            <table class="table table-hover table-bordered mb-0" id="booksTable">
+                                <thead class="table-dark">
+                                    <tr>
+                                        <th><i class="fas fa-book"></i> Title</th>
+                                        <th><i class="fas fa-calendar"></i> Year</th>
+                                        <th><i class="fas fa-user-edit"></i> Author</th>
+                                        <th><i class="fas fa-cogs"></i> Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="booksTableBody">
+                                    @foreach (var book in Model)
+                                    {
+                                        <tr data-book-title="@Html.Raw(Html.Encode((book.Title ?? "").ToLower()))" 
+                                            data-book-author="@Html.Raw(Html.Encode((book.Author?.Name ?? "").ToLower()))" 
+                                            data-book-year="@book.Year">
+                                            <td>
+                                                <div class="d-flex align-items-center">
+                                                    <div class="book-icon bg-primary text-white me-2">
+                                                        <i class="fas fa-book-open"></i>
+                                                    </div>
+                                                    <strong class="book-title">@book.Title</strong>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                @if (book.Year.HasValue)
+                                                {
+                                                    <span class="badge bg-info fs-6">
+                                                        <i class="fas fa-calendar-alt"></i> 
+                                                        <span class="book-year">@book.Year</span>
+                                                    </span>
+                                                }
+                                                else
+                                                {
+                                                    <span class="badge bg-secondary fs-6">
+                                                        <i class="fas fa-question"></i> Unknown
+                                                    </span>
+                                                }
+                                            </td>
+                                            <td>
+                                                @if (book.Author?.Name != null)
+                                                {
+                                                    <div class="d-flex align-items-center">
+                                                        <div class="avatar-circle bg-success text-white me-2">
+                                                            @book.Author.Name.Substring(0, 1).ToUpper()
+                                                        </div>
+                                                        <span class="book-author">@book.Author.Name</span>
+                                                    </div>
+                                                }
+                                                else
+                                                {
+                                                    <span class="text-muted">
+                                                        <i class="fas fa-user-slash"></i> No author
+                                                    </span>
+                                                }
+                                            </td>
+                                            <td>
+                                                <div class="btn-group" role="group">
+                                                    <a asp-action="Details" asp-route-id="@book.Id" 
+                                                       class="btn btn-info btn-sm" title="View Details">
+                                                        <i class="fas fa-eye"></i> Details
+                                                    </a>
+                                                    <a asp-action="Edit" asp-route-id="@book.Id" 
+                                                       class="btn btn-warning btn-sm" title="Edit Book">
+                                                        <i class="fas fa-edit"></i> Edit
+                                                    </a>
+                                                    
+                                                    <!-- Borrow Button -->
+                                                    <button type="button" 
+                                                            class="btn btn-primary btn-sm borrow-btn" 
+                                                            data-book-id="@book.Id" 
+                                                            data-book-title="@book.Title"
+                                                            title="Borrow Book">
+                                                        <i class="fas fa-hand-holding"></i> Borrow
+                                                    </button>
+                                                    
+                                                    <a asp-action="Delete" asp-route-id="@book.Id" 
+                                                       class="btn btn-danger btn-sm" title="Delete Book">
+                                                        <i class="fas fa-trash"></i> Delete
+                                                    </a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="text-center py-5">
+                            <i class="fas fa-book-open fa-3x text-muted mb-3"></i>
+                            <h4 class="text-muted">No books found</h4>
+                            <p class="text-muted">Start by adding your first book!</p>
+                            <a asp-action="Create" class="btn btn-success btn-lg">
+                                <i class="fas fa-plus"></i> Add First Book
+                            </a>
+                        </div>
+                    }
+                </div>
+            </div>
+
+            <!-- No Results Message -->
+            <div id="noResultsMessage" class="card border-warning d-none mt-3">
+                <div class="card-body text-center py-4">
+                    <i class="fas fa-search-minus fa-3x text-warning mb-3"></i>
+                    <h4 class="text-warning">No books found</h4>
+                    <p class="text-muted mb-0">
+                        No books match your search criteria "<span id="searchTerm" class="fw-bold text-primary"></span>".
+                        <br>Try searching by title, author, or publication year.
+                    </p>
+                    <button class="btn btn-outline-primary mt-3" onclick="clearSearch()">
+                        <i class="fas fa-times"></i> Clear Search
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Borrow/Return Modal -->
+<div class="modal fade" id="borrowModal" tabindex="-1" aria-labelledby="borrowModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header bg-primary text-white">
+                <h5 class="modal-title" id="borrowModalLabel">
+                    📚 Borrow/Return Book
+                </h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form id="borrowForm" method="post" action="@Url.Action("Create", "BookBorrowingMvc")">
+                @Html.AntiForgeryToken()
+                <div class="modal-body">
+                    <div class="row g-3">
+                        <!-- Book Name (ReadOnly) -->
+                        <div class="col-12">
+                            <label for="bookName" class="form-label">
+                                📖 Book Name 
+                                <span class="badge bg-secondary ms-2">ReadOnly</span>
+                            </label>
+                            <input type="text" 
+                                   class="form-control bg-light text-muted" 
+                                   id="bookName" 
+                                   name="BookTitle" 
+                                   readonly 
+                                   style="opacity: 0.7; cursor: not-allowed;">
+                            <input type="hidden" id="bookId" name="BookId">
+                        </div>
+
+                        <!-- Borrower Name -->
+                        <div class="col-md-6">
+                            <label for="borrowerName" class="form-label">
+                                👤 Borrower Name
+                                <span id="borrowerNameReadonly" class="badge bg-info ms-2 d-none">Auto-filled</span>
+                            </label>
+                            <input type="text" 
+                                   class="form-control" 
+                                   id="borrowerName" 
+                                   name="BorrowerName" 
+                                   placeholder="Enter borrower's full name"
+                                   required>
+                            <div class="invalid-feedback">Please provide a valid borrower name.</div>
+                        </div>
+
+                        <!-- Phone Number -->
+                        <div class="col-md-6">
+                            <label for="phoneNumber" class="form-label">
+                                📱 Phone Number
+                                <span id="phoneNumberReadonly" class="badge bg-info ms-2 d-none">Auto-filled</span>
+                            </label>
+                            <input type="tel" 
+                                   class="form-control" 
+                                   id="phoneNumber" 
+                                   name="BorrowerNumber" 
+                                   placeholder="e.g., +1234567890"
+                                   required>
+                            <div class="invalid-feedback">Please provide a valid phone number.</div>
+                        </div>
+
+                        <!-- Borrow Date/Time -->
+                        <div class="col-md-6">
+                            <label for="borrowDate" class="form-label">
+                                📅 Borrow Date/Time
+                                <span id="borrowDateReadonly" class="badge bg-info ms-2 d-none">From record</span>
+                            </label>
+                            <input type="datetime-local" 
+                                   class="form-control" 
+                                   id="borrowDate" 
+                                   name="BorrowDate" 
+                                   required>
+                        </div>
+
+                        <!-- Return Date/Time -->
+                        <div class="col-md-6">
+                            <label for="returnDate" class="form-label">
+                                🔄 Return Date/Time
+                            </label>
+                            <input type="datetime-local" 
+                                   class="form-control" 
+                                   id="returnDate" 
+                                   name="ReturnDate">
+                            <small class="form-text text-muted">Leave empty if not returned yet</small>
+                        </div>
+
+                        <!-- Book Status -->
+                        <div class="col-12">
+                            <label for="bookStatus" class="form-label">
+                                📊 Book Status
+                            </label>
+                            <select class="form-select form-select-lg" id="bookStatus" name="Status" required>
+                                <option value="">📋 Select Status</option>
+                                <option value="Available" class="text-success">
+                                    ✅ Available
+                                </option>
+                                <option value="Borrowed" class="text-danger">
+                                    📕 Borrowed
+                                </option>
+                            </select>
+                            <div class="invalid-feedback">Please select a status.</div>
+                        </div>
+                    </div>
+
+                    <!-- Alert for already borrowed books -->
+                    <div id="borrowAlert" class="alert alert-warning mt-3 d-none">
+                        <div class="d-flex align-items-center">
+                            <div class="me-3">
+                                <i class="fas fa-exclamation-triangle fa-2x text-warning"></i>
+                            </div>
+                            <div>
+                                <strong>⚠️ Warning:</strong> This book is already borrowed!<br>
+                                <small>The borrower information has been auto-filled from the existing record. You can change the status to "Available" to return the book.</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Success message area -->
+                    <div id="successAlert" class="alert alert-success mt-3 d-none">
+                        <i class="fas fa-check-circle"></i> 
+                        <strong>✅ Ready to save!</strong> All information looks good.
+                    </div>
+
+                    <!-- Info message for existing borrowing -->
+                    <div id="existingRecordAlert" class="alert alert-info mt-3 d-none">
+                        <div class="d-flex align-items-center">
+                            <div class="me-3">
+                                <i class="fas fa-info-circle fa-2x text-info"></i>
+                            </div>
+                            <div>
+                                <strong>📋 Existing Record:</strong> The form has been pre-filled with current borrowing information.<br>
+                                <small>You can modify the details or change the status as needed.</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="modal-footer bg-light">
+                    <button type="button" class="btn btn-secondary btn-lg" data-bs-dismiss="modal">
+                        ❌ Cancel
+                    </button>
+                    <button type="submit" class="btn btn-primary btn-lg px-4" id="saveBtn">
+                        💾 Save Record
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            // Set current date/time as default
+            var now = new Date();
+            now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
+
+            // Search functionality
+            const searchInput = $('#bookSearch');
+            const tableBody = $('#booksTableBody');
+            const noResultsMessage = $('#noResultsMessage');
+            const visibleCountSpan = $('#visibleCount');
+            const totalCount = @Model.Count();
+
+            // Search functionality
+            searchInput.on('input', function () {
+                performSearch();
+            });
+
+            // Clear search button
+            $('#clearSearch').on('click', function () {
+                clearSearch();
+            });
+
+            // Clear search on Escape key
+            searchInput.on('keydown', function (e) {
+                if (e.key === 'Escape') {
+                    clearSearch();
+                }
+            });
+
+            function performSearch() {
+                const searchTerm = searchInput.val().toLowerCase().trim();
+                console.log('Searching for:', searchTerm);
+                let visibleRows = 0;
+
+                if (searchTerm === '') {
+                    // Show all rows
+                    tableBody.find('tr').show();
+                    visibleRows = totalCount;
+                    noResultsMessage.addClass('d-none');
+                    
+                    // Remove highlights
+                    clearHighlights();
+                } else {
+                    // Filter rows
+                    tableBody.find('tr').each(function () {
+                        const $row = $(this);
+                        
+                        // Use .attr() instead of .data() for better reliability
+                        const bookTitle = $row.attr('data-book-title') || '';
+                        const bookAuthor = $row.attr('data-book-author') || '';
+                        const bookYear = $row.attr('data-book-year') || '';
+
+                        console.log('Checking row:', {
+                            title: bookTitle,
+                            author: bookAuthor,
+                            year: bookYear,
+                            searchTerm: searchTerm
+                        });
+
+                        // Check if search term matches title, author, or year
+                        if (bookTitle.includes(searchTerm) ||
+                            bookAuthor.includes(searchTerm) ||
+                            bookYear.toString().toLowerCase().includes(searchTerm)) {
+                            
+                            $row.show();
+                            visibleRows++;
+                            console.log('Match found!');
+
+                            // Highlight search term
+                            highlightSearchTerm($row, searchTerm);
+                        } else {
+                            $row.hide();
+                            // Clear highlights for hidden rows
+                            clearRowHighlights($row);
+                        }
+                    });
+
+                    // Show/hide no results message
+                    if (visibleRows === 0) {
+                        noResultsMessage.removeClass('d-none');
+                        $('#searchTerm').text(searchInput.val());
+                    } else {
+                        noResultsMessage.addClass('d-none');
+                    }
+                }
+
+                // Update counters
+                updateCounters(visibleRows);
+
+                // Add search highlighting to input
+                if (searchTerm !== '') {
+                    searchInput.addClass('border-primary');
+                } else {
+                    searchInput.removeClass('border-primary');
+                }
+            }
+
+            function highlightSearchTerm(row, searchTerm) {
+                const titleCell = row.find('.book-title');
+                const authorCell = row.find('.book-author');
+                const yearCell = row.find('.book-year');
+
+                // Store original text if not already stored
+                [titleCell, authorCell, yearCell].forEach(cell => {
+                    if (cell.length && !cell.data('original-text')) {
+                        cell.data('original-text', cell.text());
+                    }
+                });
+
+                if (searchTerm !== '') {
+                    const regex = new RegExp(`(${escapeRegExp(searchTerm)})`, 'gi');
+
+                    [titleCell, authorCell, yearCell].forEach(cell => {
+                        if (cell.length) {
+                            const originalText = cell.data('original-text') || cell.text();
+                            const highlightedText = originalText.replace(regex, '<mark class="bg-warning text-dark">$1</mark>');
+                            cell.html(highlightedText);
+                        }
+                    });
+                }
+            }
+
+            function clearRowHighlights(row) {
+                const titleCell = row.find('.book-title');
+                const authorCell = row.find('.book-author');
+                const yearCell = row.find('.book-year');
+
+                [titleCell, authorCell, yearCell].forEach(cell => {
+                    if (cell.length) {
+                        const originalText = cell.data('original-text');
+                        if (originalText) {
+                            cell.html(originalText);
+                        }
+                    }
+                });
+            }
+
+            function clearHighlights() {
+                tableBody.find('.book-title, .book-author, .book-year').each(function () {
+                    const originalText = $(this).data('original-text');
+                    if (originalText) {
+                        $(this).html(originalText);
+                    }
+                });
+            }
+
+            function escapeRegExp(string) {
+                return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+            }
+
+            function updateCounters(visibleCount) {
+                visibleCountSpan.text(visibleCount);
+
+                // Update counter colors
+                if (visibleCount === 0) {
+                    $('#searchResults').removeClass('text-info text-success').addClass('text-warning');
+                } else if (visibleCount === totalCount) {
+                    $('#searchResults').removeClass('text-warning text-success').addClass('text-info');
+                } else {
+                    $('#searchResults').removeClass('text-info text-warning').addClass('text-success');
+                }
+            }
+
+            function clearSearch() {
+                searchInput.val('').removeClass('border-primary').focus();
+                tableBody.find('tr').show();
+
+                // Remove highlights
+                clearHighlights();
+
+                noResultsMessage.addClass('d-none');
+                updateCounters(totalCount);
+            }
+
+            // Make clearSearch globally available
+            window.clearSearch = clearSearch;
+
+            // Focus search input on Ctrl+F
+            $(document).on('keydown', function (e) {
+                if (e.ctrlKey && e.key === 'f') {
+                    e.preventDefault();
+                    searchInput.focus();
+                }
+            });
+
+            // Auto-focus search input when page loads
+            searchInput.focus();
+
+            // ===== BORROW MODAL CODE =====
+            $('#borrowDate').val(now.toISOString().slice(0, 16));
+
+            // Handle Borrow button click
+            $('.borrow-btn').on('click', function () {
+                var bookId = $(this).data('book-id');
+                var bookTitle = $(this).data('book-title');
+
+                console.log('Opening modal for book:', bookId, bookTitle);
+
+                // Reset form and alerts
+                resetFormAndAlerts();
+
+                // Set book info in modal
+                $('#bookId').val(bookId);
+                $('#bookName').val(bookTitle);
+
+                // Show loading state
+                showLoadingState();
+
+                // Get existing borrowing record for this book
+                $.get('@Url.Action("GetBorrowingData", "BookBorrowingMvc")', { bookId: bookId })
+                    .done(function (data) {
+                        if (data.success && data.bookBorrowing) {
+                            console.log('Found existing borrowing record');
+                            populateExistingRecord(data.bookBorrowing);
+                        } else {
+                            console.log('No existing record found, setting up new borrowing');
+                            setupNewBorrowing();
+                        }
+                    })
+                    .fail(function (xhr) {
+                        console.log('No existing record found, setting up new borrowing');
+                        setupNewBorrowing();
+                    })
+                    .always(function () {
+                        hideLoadingState();
+                        $('#borrowModal').modal('show');
+                    });
+            });
+
+            function resetFormAndAlerts() {
+                $('#borrowForm')[0].reset();
+                $('#borrowAlert, #successAlert, #existingRecordAlert').addClass('d-none');
+                $('#borrowForm').removeClass('was-validated');
+                $('#borrowerNameReadonly, #phoneNumberReadonly, #borrowDateReadonly').addClass('d-none');
+                $('#saveBtn').html('💾 Save Record').prop('disabled', false);
+            }
+
+            function showLoadingState() {
+                $('#saveBtn').html('<span class="spinner-border spinner-border-sm me-2"></span>Loading...').prop('disabled', true);
+            }
+
+            function hideLoadingState() {
+                $('#saveBtn').html('💾 Save Record').prop('disabled', false);
+            }
+
+            function populateExistingRecord(borrowing) {
+                // Populate form fields
+                $('#borrowerName').val(borrowing.borrowerName || '');
+                $('#phoneNumber').val(borrowing.borrowerNumber || '');
+
+                // Set borrow date
+                if (borrowing.borrowDate) {
+                    $('#borrowDate').val(borrowing.borrowDate);
+                }
+
+                // Set return date if exists
+                if (borrowing.returnDate) {
+                    $('#returnDate').val(borrowing.returnDate);
+                }
+
+                // Set status
+                $('#bookStatus').val(borrowing.status || 'Borrowed');
+
+                // Show appropriate alerts and badges
+                if (borrowing.status === 'Borrowed') {
+                    $('#borrowAlert').removeClass('d-none');
+                }
+                $('#existingRecordAlert').removeClass('d-none');
+
+                // Show readonly badges to indicate auto-filled data
+                $('#borrowerNameReadonly, #phoneNumberReadonly, #borrowDateReadonly').removeClass('d-none');
+
+                // Add visual indication that fields are pre-filled
+                $('#borrowerName, #phoneNumber').addClass('border-info').attr('title', 'Pre-filled from existing record');
+            }
+
+            function setupNewBorrowing() {
+                // Set current date/time as default for new borrowing
+                $('#borrowDate').val(now.toISOString().slice(0, 16));
+
+                // Set default status to Borrowed for new records
+                $('#bookStatus').val('Borrowed');
+
+                // Show success alert
+                $('#successAlert').removeClass('d-none').html(
+                    '<i class="fas fa-check-circle"></i> ' +
+                    '<strong>📥 New Borrowing:</strong> Ready to create a new borrowing record.'
+                );
+            }
+
+            // Form validation and submission
+            $('#borrowForm').on('submit', function (e) {
+                e.preventDefault();
+
+                if (!this.checkValidity()) {
+                    e.stopPropagation();
+                    $(this).addClass('was-validated');
+                    return false;
+                }
+
+                // Show loading state
+                $('#saveBtn').html('<span class="spinner-border spinner-border-sm me-2"></span>💾 Saving...')
+                    .prop('disabled', true);
+
+                // Submit form
+                this.submit();
+            });
+
+            // Status change handler
+            $('#bookStatus').on('change', function () {
+                var status = $(this).val();
+                if (status === 'Available') {
+                    // If setting to Available, auto-set return date
+                    var now = new Date();
+                    now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
+                    $('#returnDate').val(now.toISOString().slice(0, 16));
+
+                    // Show success message
+                    $('#successAlert').removeClass('d-none').html(
+                        '<i class="fas fa-check-circle"></i> ' +
+                        '<strong>📤 Book Return:</strong> Return date has been automatically set to now.'
+                    );
+                } else if (status === 'Borrowed') {
+                    // If borrowing, clear return date
+                    $('#returnDate').val('');
+                    $('#successAlert').removeClass('d-none').html(
+                        '<i class="fas fa-check-circle"></i> ' +
+                        '<strong>📥 Book Borrow:</strong> Ready to create/update borrowing record.'
+                    );
+                }
+            });
+
+            // Real-time validation feedback
+            $('#borrowerName, #phoneNumber').on('input', function () {
+                if ($(this).val().length > 0) {
+                    $(this).removeClass('is-invalid').addClass('is-valid');
+                } else {
+                    $(this).removeClass('is-valid').addClass('is-invalid');
+                }
+            });
+        });
+    </script>
+
+    <!-- Custom CSS for enhanced styling -->
+    <style>
+        /* Search bar styling */
+        .input-group-lg .form-control {
+            font-size: 1.1rem;
+        }
+
+        .input-group-text {
+            border: none;
+        }
+
+        /* Enhanced button styling */
+        .borrow-btn {
+            background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+            border: none;
+            color: white;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0,123,255,0.3);
+        }
+
+            .borrow-btn:hover {
+                background: linear-gradient(135deg, #0056b3 0%, #004085 100%);
+                transform: translateY(-2px);
+                box-shadow: 0 4px 12px rgba(0,123,255,0.4);
+                color: white;
+            }
+
+            .borrow-btn:active {
+                transform: translateY(0);
+            }
+
+        /* Modal enhancements */
+        .modal-content {
+            border-radius: 15px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            border: none;
+        }
+
+        .modal-header {
+            border-radius: 15px 15px 0 0;
+            background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+            border-bottom: none;
+        }
+
+        .modal-footer {
+            border-radius: 0 0 15px 15px;
+            border-top: 1px solid #e9ecef;
+        }
+
+        /* Form styling */
+        .form-control:focus, .form-select:focus {
+            border-color: #007bff;
+            box-shadow: 0 0 0 0.2rem rgba(0,123,255,0.25);
+        }
+
+        .form-control[readonly] {
+            background-color: #f8f9fa !important;
+            border-color: #dee2e6;
+            color: #6c757d !important;
+        }
+
+        /* Pre-filled field styling */
+        .border-info {
+            border-color: #17a2b8 !important;
+            background-color: #f8fdff !important;
+        }
+
+        /* Alert enhancements */
+        .alert {
+            border-radius: 10px;
+            border: none;
+        }
+
+        .alert-warning {
+            background: linear-gradient(45deg, #fff3cd, #ffeaa7);
+            border-left: 4px solid #ffc107;
+        }
+
+        .alert-success {
+            background: linear-gradient(45deg, #d1edff, #74b9ff);
+            border-left: 4px solid #28a745;
+        }
+
+        .alert-info {
+            background: linear-gradient(45deg, #d1ecf1, #bee5eb);
+            border-left: 4px solid #17a2b8;
+        }
+
+        /* Card styling */
+        .card {
+            border-radius: 15px;
+            border: none;
+        }
+
+        /* Search highlighting */
+        mark {
+            padding: 0.1em 0.2em;
+            border-radius: 3px;
+        }
+
+        /* Button group spacing */
+        .btn-sm {
+            margin-right: 5px;
+        }
+
+        /* Book icon styling */
+        .book-icon {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+        }
+
+        /* Avatar circle styling */
+        .avatar-circle {
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            font-weight: bold;
+        }
+
+        /* Loading spinner */
+        .spinner-border-sm {
+            width: 0.875rem;
+            height: 0.875rem;
+        }
+
+        /* Form validation styling */
+        .is-valid {
+            border-color: #28a745;
+        }
+
+        .is-invalid {
+            border-color: #dc3545;
+        }
+
+        /* Badge styling */
+        .badge {
+            font-size: 0.7em;
+        }
+
+        /* Counter styling */
+        #searchResults {
+            transition: color 0.3s ease;
+        }
+
+        /* No results message */
+        .border-warning {
+            border-color: #ffc107 !important;
+        }
+
+        /* Table hover effects */
+        .table-hover tbody tr:hover {
+            background-color: rgba(0, 123, 255, 0.075);
+        }
+
+        /* Search input focus effects */
+        .border-primary {
+            border-color: #007bff !important;
+            box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25) !important;
+        }
+    </style>
+}

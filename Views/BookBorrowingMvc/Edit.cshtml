@@ -1,0 +1,307 @@
+﻿@model BookLibraryMvcProj.Models.BookBorrowing
+
+@{
+    ViewData["Title"] = "Edit Book Borrowing";
+    var books = ViewBag.Books as List<BookLibraryMvcProj.Models.Book> ?? new List<BookLibraryMvcProj.Models.Book>();
+}
+
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card shadow-lg border-0">
+                <div class="card-header bg-warning text-dark">
+                    <h3 class="card-title mb-0">
+                        <i class="fas fa-edit"></i> ✏️ Edit Book Borrowing Record
+                    </h3>
+                </div>
+                <div class="card-body p-4">
+                    <!-- Validation Summary -->
+                    @if (!ViewData.ModelState.IsValid)
+                    {
+                        <div class="alert alert-danger border-0 mb-4">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            <strong>❌ Please correct the following errors:</strong>
+                            <div asp-validation-summary="All" class="text-danger mt-2"></div>
+                        </div>
+                    }
+
+                    <form asp-action="Edit" method="post" class="needs-validation" novalidate>
+                        @Html.AntiForgeryToken()
+                        <input type="hidden" asp-for="BookId" />
+
+                        <div class="row">
+                            <!-- Left Column -->
+                            <div class="col-md-6">
+                                <div class="form-section mb-4">
+                                    <h5 class="section-title text-primary mb-3">
+                                        <i class="fas fa-book"></i> 📚 Book Information
+                                    </h5>
+
+                                    <!-- Book Selection -->
+                                    <div class="mb-3">
+                                        <label asp-for="BookId" class="form-label fw-bold">
+                                            <i class="fas fa-book text-primary"></i> Select Book <span class="text-danger">*</span>
+                                        </label>
+                                        <select asp-for="BookId" class="form-select form-select-lg" required>
+                                            <option value="">-- Choose a Book --</option>
+                                            @foreach (var book in books)
+                                            {
+                                                <option value="@book.Id" selected="@(book.Id == Model.BookId)">
+                                                    📖 @book.Title @(book.Author != null ? $" by {book.Author}" : "")
+                                                </option>
+                                            }
+                                        </select>
+                                        <span asp-validation-for="BookId" class="text-danger"></span>
+                                    </div>
+
+                                    <!-- Status -->
+                                    <div class="mb-3">
+                                        <label asp-for="Status" class="form-label fw-bold">
+                                            <i class="fas fa-info-circle text-info"></i> Status <span class="text-danger">*</span>
+                                        </label>
+                                        <select asp-for="Status" class="form-select form-select-lg" required>
+                                            <option value="Borrowed" selected="@(Model.Status == "Borrowed")">📕 Borrowed</option>
+                                            <option value="Available" selected="@(Model.Status == "Available")">📗 Available</option>
+                                        </select>
+                                        <span asp-validation-for="Status" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Right Column -->
+                            <div class="col-md-6">
+                                <div class="form-section mb-4">
+                                    <h5 class="section-title text-primary mb-3">
+                                        <i class="fas fa-user"></i> 👤 Borrower Information
+                                    </h5>
+
+                                    <!-- Borrower Name -->
+                                    <div class="mb-3">
+                                        <label asp-for="BorrowerName" class="form-label fw-bold">
+                                            <i class="fas fa-user text-success"></i> Borrower Name <span class="text-danger">*</span>
+                                        </label>
+                                        <input asp-for="BorrowerName" class="form-control form-control-lg" 
+                                               placeholder="Enter borrower's full name" required />
+                                        <span asp-validation-for="BorrowerName" class="text-danger"></span>
+                                    </div>
+
+                                    <!-- Borrower Phone -->
+                                    <div class="mb-3">
+                                        <label asp-for="BorrowerNumber" class="form-label fw-bold">
+                                            <i class="fas fa-phone text-info"></i> Phone Number <span class="text-danger">*</span>
+                                        </label>
+                                        <input asp-for="BorrowerNumber" class="form-control form-control-lg" 
+                                               placeholder="Enter phone number" required />
+                                        <span asp-validation-for="BorrowerNumber" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Date Information Section -->
+                        <div class="form-section mb-4">
+                            <h5 class="section-title text-primary mb-3">
+                                <i class="fas fa-calendar"></i> 📅 Date Information
+                            </h5>
+                            
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <!-- Borrow Date -->
+                                    <div class="mb-3">
+                                        <label asp-for="BorrowDate" class="form-label fw-bold">
+                                            <i class="fas fa-calendar-plus text-warning"></i> Borrow Date <span class="text-danger">*</span>
+                                        </label>
+                                        <input asp-for="BorrowDate" type="datetime-local" 
+                                               class="form-control form-control-lg" required />
+                                        <span asp-validation-for="BorrowDate" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-md-6">
+                                    <!-- Return Date -->
+                                    <div class="mb-3">
+                                        <label asp-for="ReturnDate" class="form-label fw-bold">
+                                            <i class="fas fa-calendar-check text-success"></i> Return Date
+                                        </label>
+                                        <input asp-for="ReturnDate" type="datetime-local" 
+                                               class="form-control form-control-lg" />
+                                        <small class="form-text text-muted">
+                                            Leave blank if not yet returned
+                                        </small>
+                                        <span asp-validation-for="ReturnDate" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Action Buttons -->
+                        <div class="d-flex justify-content-between mt-4">
+                            <a href="@Url.Action("Index")" class="btn btn-secondary btn-lg">
+                                <i class="fas fa-times"></i> ❌ Cancel
+                            </a>
+                            
+                            <button type="submit" class="btn btn-warning btn-lg">
+                                <i class="fas fa-save"></i> 💾 Update Record
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Quick Actions Card -->
+            <div class="card mt-4 shadow-sm border-0">
+                <div class="card-body">
+                    <h6 class="card-title text-muted">
+                        <i class="fas fa-lightbulb"></i> 💡 Quick Actions
+                    </h6>
+                    <div class="d-flex gap-2 flex-wrap">
+                        <a href="@Url.Action("Details", new { id = Model.BookId })" 
+                           class="btn btn-outline-info btn-sm">
+                            <i class="fas fa-eye"></i> View Details
+                        </a>
+                        @if (Model.Status == "Borrowed")
+                        {
+                            <form method="post" action="@Url.Action("ReturnBook", new { id = Model.BookId })" 
+                                  class="d-inline">
+                                @Html.AntiForgeryToken()
+                                <button type="submit" class="btn btn-outline-success btn-sm"
+                                        onclick="return confirm('Mark this book as returned?')">
+                                    <i class="fas fa-undo"></i> Quick Return
+                                </button>
+                            </form>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            // Form validation
+            $('.needs-validation').on('submit', function (e) {
+                if (!this.checkValidity()) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                }
+                $(this).addClass('was-validated');
+            });
+
+            // Auto-update status based on return date
+            $('input[name="ReturnDate"]').on('change', function () {
+                var returnDate = $(this).val();
+                var statusSelect = $('select[name="Status"]');
+                
+                if (returnDate) {
+                    statusSelect.val('Available');
+                    showToast('Status automatically updated to Available', 'success');
+                } else {
+                    statusSelect.val('Borrowed');
+                    showToast('Status automatically updated to Borrowed', 'info');
+                }
+            });
+
+            // Toast notification function
+            function showToast(message, type) {
+                var toastHtml = `
+                    <div class="toast align-items-center text-white bg-${type} border-0 position-fixed top-0 end-0 m-3" role="alert" style="z-index: 9999;">
+                        <div class="d-flex">
+                            <div class="toast-body">
+                                ${message}
+                            </div>
+                            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+                        </div>
+                    </div>
+                `;
+                $('body').append(toastHtml);
+                $('.toast').last().toast({ delay: 3000 }).toast('show').on('hidden.bs.toast', function() {
+                    $(this).remove();
+                });
+            }
+
+            // Initialize datetime-local inputs with current values
+            var borrowDate = '@Model.BorrowDate.ToString("yyyy-MM-ddTHH:mm")';
+            if (borrowDate && borrowDate !== '0001-01-01T00:00') {
+                $('input[name="BorrowDate"]').val(borrowDate);
+            }
+
+            @if (Model.ReturnDate.HasValue)
+            {
+                <text>
+                var returnDate = '@Model.ReturnDate.Value.ToString("yyyy-MM-ddTHH:mm")';
+                if (returnDate && returnDate !== '0001-01-01T00:00') {
+                    $('input[name="ReturnDate"]').val(returnDate);
+                }
+                </text>
+            }
+        });
+    </script>
+
+    <style>
+        .form-section {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 12px;
+            padding: 1.5rem;
+            border-left: 4px solid #007bff;
+        }
+
+        .section-title {
+            font-weight: 600;
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 0.5rem;
+        }
+
+        .form-control, .form-select {
+            border-radius: 8px;
+            border: 2px solid #e9ecef;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus, .form-select:focus {
+            border-color: #007bff;
+            box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+            transform: translateY(-2px);
+        }
+
+        .form-label {
+            margin-bottom: 0.75rem;
+            color: #495057;
+        }
+
+        .btn-lg {
+            padding: 0.75rem 2rem;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        .card {
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        .was-validated .form-control:invalid,
+        .was-validated .form-select:invalid {
+            border-color: #dc3545;
+            animation: shake 0.5s;
+        }
+
+        @@keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+
+        .text-danger {
+            font-size: 0.875rem;
+            margin-top: 0.25rem;
+        }
+    </style>
+}

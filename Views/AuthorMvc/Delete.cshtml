@@ -1,0 +1,21 @@
+﻿@model BookLibraryMvcProj.Models.Author
+
+@{
+    ViewData["Title"] = "Delete Author";
+}
+
+<div class="container mt-4">
+    <h2 class="text-danger">🗑 Delete Author</h2>
+
+    <div class="card shadow p-3 mb-3 bg-light rounded">
+        <h4>Are you sure you want to delete this author?</h4>
+        <h5>AuthorId: @Model.AuthorId</h5>
+        <h5>Name: @Model.Name</h5>
+    </div>
+
+    <form asp-action="Delete" method="post">
+        <input type="hidden" asp-for="AuthorId" />
+        <button type="submit" class="btn btn-danger">Yes, Delete</button>
+        <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>

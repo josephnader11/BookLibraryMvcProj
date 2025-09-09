@@ -1,0 +1,18 @@
+﻿@model BookLibraryMvcProj.Models.Book
+
+@{
+    ViewData["Title"] = "Delete Book";
+}
+
+<div class="container mt-4">
+    <h2 class="text-danger">🗑 Delete Book</h2>
+    <div class="alert alert-danger">
+        Are you sure you want to delete <strong>@Model.Title</strong> by <strong>@Model.Author?.Name</strong>?
+    </div>
+
+    <form asp-action="DeleteConfirmed" method="post">
+        <input type="hidden" asp-for="Id" />
+        <button type="submit" class="btn btn-danger">Yes, Delete</button>
+        <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>

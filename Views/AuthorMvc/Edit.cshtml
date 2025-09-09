@@ -1,0 +1,22 @@
+﻿@model BookLibraryMvcProj.Models.Author
+
+@{
+    ViewData["Title"] = "Edit Author";
+}
+
+<div class="container mt-4">
+    <h2 class="text-warning">✏ Edit Author</h2>
+
+    <form asp-action="Edit" method="post" class="p-4 border rounded shadow bg-light">
+        <input type="hidden" asp-for="AuthorId" />
+
+        <div class="mb-3">
+            <label asp-for="Name" class="form-label fw-bold"></label>
+            <input asp-for="Name" class="form-control" placeholder="Enter author name" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+
+        <button type="submit" class="btn btn-warning">Update</button>
+        <a asp-action="Index" class="btn btn-secondary">Back</a>
+    </form>
+</div>

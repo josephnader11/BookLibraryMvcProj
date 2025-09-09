@@ -1,0 +1,425 @@
+﻿@{
+    ViewData["Title"] = "Home - Book Library";
+}
+
+<div class="homepage">
+    <!-- Main Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-7">
+                    <div class="hero-content">
+                        <div class="brand-section mb-4">
+                            <div class="book-icon">
+                                <div class="book-pages"></div>
+                            </div>
+                            <h1 class="brand-title">Book Library</h1>
+                        </div>
+                        <p class="hero-subtitle mb-5">Manage your books, authors, and borrowings in one simple place</p>
+                        <div class="hero-buttons">
+                            <a href="@Url.Action("Index", "BookMvc")" class="btn btn-primary btn-main">
+                                📚 View Books
+                            </a>
+                            <a href="@Url.Action("Create", "BookMvc")" class="btn btn-outline btn-main">
+                                ➕ Add Book
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-5">
+                    <div class="stats-container">
+                        <div class="stats-card">
+                            <div class="stats-header">
+                                <span class="stats-icon">📊</span>
+                                <span class="stats-title">Quick Stats</span>
+                            </div>
+                            <div class="stats-content">
+                                <div class="stat-item">
+                                    <div class="stat-number">@(ViewBag.TotalBooks ?? 0)</div>
+                                    <div class="stat-label">Books</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-number">@(ViewBag.TotalAuthors ?? 0)</div>
+                                    <div class="stat-label">Authors</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Actions Section -->
+    <section class="quick-actions">
+        <div class="container">
+            <h2 class="section-title">🚀 What would you like to do?</h2>
+            <div class="row g-4">
+                <div class="col-lg-3 col-md-6">
+                    <a href="@Url.Action("Index", "BookMvc")" class="action-card">
+                        <div class="action-icon">📚</div>
+                        <h5 class="action-title">Browse Books</h5>
+                        <p class="action-desc">View all books in the library</p>
+                    </a>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <a href="@Url.Action("Create", "BookMvc")" class="action-card">
+                        <div class="action-icon">➕</div>
+                        <h5 class="action-title">Add Book</h5>
+                        <p class="action-desc">Add new books to collection</p>
+                    </a>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <a href="@Url.Action("Index", "BookBorrowingMvc")" class="action-card">
+                        <div class="action-icon">📋</div>
+                        <h5 class="action-title">Borrowing</h5>
+                        <p class="action-desc">Manage book borrowing</p>
+                    </a>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <a href="@Url.Action("Index", "BookCategory")" class="action-card">
+                        <div class="action-icon">🏷️</div>
+                        <h5 class="action-title">Categories</h5>
+                        <p class="action-desc">Manage book categories</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        line-height: 1.6;
+        color: #333;
+    }
+
+    .homepage {
+        min-height: 100vh;
+    }
+
+    /* Hero Section - Forest Green Theme */
+    .hero {
+        background: linear-gradient(135deg, #047857 0%, #059669 50%, #10b981 100%);
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        color: white;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .hero::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+    }
+
+    /* Floating leaf decorations */
+    .hero::after {
+        content: '';
+        position: absolute;
+        top: 10%;
+        right: 10%;
+        width: 100px;
+        height: 100px;
+        background: rgba(52, 211, 153, 0.1);
+        border-radius: 50px 0;
+        transform: rotate(45deg);
+        animation: float 6s ease-in-out infinite;
+    }
+
+    @@keyframes float {
+        0%, 100% { transform: rotate(45deg) translateY(0px); }
+        50% { transform: rotate(45deg) translateY(-20px); }
+    }
+
+    .container {
+        position: relative;
+        z-index: 2;
+    }
+
+    /* Brand Section */
+    .brand-section {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .book-icon {
+        width: 60px;
+        height: 60px;
+        background: linear-gradient(45deg, #34d399, #10b981);
+        border-radius: 12px;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 8px 25px rgba(52, 211, 153, 0.4);
+        border: 2px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .book-icon::before {
+        content: '📚';
+        font-size: 28px;
+        filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+    }
+
+    .brand-title {
+        font-size: 4rem;
+        font-weight: 700;
+        margin: 0;
+        letter-spacing: -2px;
+        text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    }
+
+    .hero-subtitle {
+        font-size: 1.3rem;
+        opacity: 0.95;
+        font-weight: 400;
+        max-width: 500px;
+        line-height: 1.5;
+        text-shadow: 0 1px 3px rgba(0,0,0,0.2);
+    }
+
+    /* Buttons - Forest Green Theme */
+    .hero-buttons {
+        display: flex;
+        gap: 20px;
+        flex-wrap: wrap;
+    }
+
+    .btn-main {
+        padding: 16px 32px;
+        font-size: 1.1rem;
+        font-weight: 600;
+        border-radius: 12px;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        transition: all 0.3s ease;
+        border: 2px solid transparent;
+    }
+
+    .btn-primary {
+        background: rgba(255, 255, 255, 0.95);
+        color: #047857;
+        box-shadow: 0 4px 14px rgba(255, 255, 255, 0.3);
+        font-weight: 700;
+    }
+
+    .btn-primary:hover {
+        background: white;
+        color: #047857;
+        transform: translateY(-3px);
+        box-shadow: 0 8px 25px rgba(255, 255, 255, 0.4);
+        text-decoration: none;
+    }
+
+    .btn-outline {
+        background: transparent;
+        color: white;
+        border: 2px solid rgba(52, 211, 153, 0.6);
+        font-weight: 600;
+    }
+
+    .btn-outline:hover {
+        background: rgba(52, 211, 153, 0.2);
+        border-color: #34d399;
+        transform: translateY(-3px);
+        box-shadow: 0 8px 20px rgba(52, 211, 153, 0.3);
+        color: white;
+        text-decoration: none;
+    }
+
+    /* Stats Card - Forest Green Theme */
+    .stats-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .stats-card {
+        background: rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(52, 211, 153, 0.3);
+        border-radius: 20px;
+        padding: 40px;
+        width: 100%;
+        max-width: 350px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+    }
+
+    .stats-header {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 30px;
+    }
+
+    .stats-icon {
+        font-size: 24px;
+        filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+    }
+
+    .stats-title {
+        font-size: 1.3rem;
+        font-weight: 600;
+        color: white;
+        text-shadow: 0 1px 3px rgba(0,0,0,0.2);
+    }
+
+    .stats-content {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 30px;
+    }
+
+    .stat-item {
+        text-align: center;
+    }
+
+    .stat-number {
+        font-size: 3rem;
+        font-weight: 700;
+        color: #34d399;
+        line-height: 1;
+        margin-bottom: 8px;
+        text-shadow: 0 2px 8px rgba(52, 211, 153, 0.5);
+    }
+
+    .stat-label {
+        font-size: 1.1rem;
+        color: rgba(255, 255, 255, 0.9);
+        font-weight: 500;
+        text-shadow: 0 1px 3px rgba(0,0,0,0.2);
+    }
+
+    /* Quick Actions */
+    .quick-actions {
+        padding: 100px 0;
+        background: linear-gradient(180deg, #f0fdf4 0%, #ecfdf5 100%);
+    }
+
+    .section-title {
+        text-align: center;
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 60px;
+        color: #047857;
+    }
+
+    .action-card {
+        background: white;
+        border-radius: 16px;
+        padding: 40px 30px;
+        text-align: center;
+        text-decoration: none;
+        color: inherit;
+        display: block;
+        height: 100%;
+        box-shadow: 0 4px 6px rgba(4, 120, 87, 0.08);
+        transition: all 0.3s ease;
+        border: 1px solid rgba(16, 185, 129, 0.1);
+    }
+
+    .action-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 20px 40px rgba(4, 120, 87, 0.15);
+        text-decoration: none;
+        color: inherit;
+        border-color: rgba(52, 211, 153, 0.3);
+    }
+
+    .action-icon {
+        font-size: 3.5rem;
+        margin-bottom: 20px;
+        display: block;
+        filter: drop-shadow(0 2px 4px rgba(4, 120, 87, 0.2));
+    }
+
+    .action-title {
+        font-size: 1.4rem;
+        font-weight: 600;
+        margin-bottom: 12px;
+        color: #047857;
+    }
+
+    .action-desc {
+        color: #059669;
+        font-size: 1rem;
+        margin: 0;
+        opacity: 0.8;
+    }
+
+    /* Responsive Design */
+    @@media (max-width: 992px) {
+        .brand-title {
+            font-size: 3rem;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.1rem;
+        }
+        
+        .brand-section {
+            flex-direction: column;
+            text-align: center;
+            gap: 15px;
+        }
+        
+        .stats-card {
+            margin-top: 40px;
+        }
+    }
+
+    @@media (max-width: 768px) {
+        .hero {
+            min-height: auto;
+            padding: 60px 0;
+        }
+        
+        .brand-title {
+            font-size: 2.5rem;
+        }
+        
+        .hero-buttons {
+            justify-content: center;
+        }
+        
+        .btn-main {
+            width: 100%;
+            justify-content: center;
+            margin-bottom: 10px;
+        }
+        
+        .stats-content {
+            gap: 20px;
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+        }
+        
+        .quick-actions {
+            padding: 60px 0;
+        }
+        
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 40px;
+        }
+    }
+</style>

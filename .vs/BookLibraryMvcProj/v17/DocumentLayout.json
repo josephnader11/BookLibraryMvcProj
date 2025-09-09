@@ -1,0 +1,393 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\lenovo\\Desktop\\Hits\\BookLibraryMvcProj\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{013BF16E-B93E-4D7D-925D-0387FC08CC37}|BookLibraryMvcProj.csproj|c:\\users\\lenovo\\desktop\\hits\\booklibrarymvcproj\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{013BF16E-B93E-4D7D-925D-0387FC08CC37}|BookLibraryMvcProj.csproj|solutionrelative:views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{013BF16E-B93E-4D7D-925D-0387FC08CC37}|BookLibraryMvcProj.csproj|c:\\users\\lenovo\\desktop\\hits\\booklibrarymvcproj\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{013BF16E-B93E-4D7D-925D-0387FC08CC37}|BookLibraryMvcProj.csproj|solutionrelative:controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{013BF16E-B93E-4D7D-925D-0387FC08CC37}|BookLibraryMvcProj.csproj|c:\\users\\lenovo\\desktop\\hits\\booklibrarymvcproj\\views\\bookmvc\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{013BF16E-B93E-4D7D-925D-0387FC08CC37}|BookLibraryMvcProj.csproj|solutionrelative:views\\bookmvc\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{013BF16E-B93E-4D7D-925D-0387FC08CC37}|BookLibraryMvcProj.csproj|c:\\users\\lenovo\\desktop\\hits\\booklibrarymvcproj\\controllers\\bookmvccontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{013BF16E-B93E-4D7D-925D-0387FC08CC37}|BookLibraryMvcProj.csproj|solutionrelative:controllers\\bookmvccontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{013BF16E-B93E-4D7D-925D-0387FC08CC37}|BookLibraryMvcProj.csproj|c:\\users\\lenovo\\desktop\\hits\\booklibrarymvcproj\\controllers\\bookcategorycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{013BF16E-B93E-4D7D-925D-0387FC08CC37}|BookLibraryMvcProj.csproj|solutionrelative:controllers\\bookcategorycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{013BF16E-B93E-4D7D-925D-0387FC08CC37}|BookLibraryMvcProj.csproj|c:\\users\\lenovo\\desktop\\hits\\booklibrarymvcproj\\models\\author.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{013BF16E-B93E-4D7D-925D-0387FC08CC37}|BookLibraryMvcProj.csproj|solutionrelative:models\\author.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{013BF16E-B93E-4D7D-925D-0387FC08CC37}|BookLibraryMvcProj.csproj|c:\\users\\lenovo\\desktop\\hits\\booklibrarymvcproj\\views\\bookmvc\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{013BF16E-B93E-4D7D-925D-0387FC08CC37}|BookLibraryMvcProj.csproj|solutionrelative:views\\bookmvc\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{013BF16E-B93E-4D7D-925D-0387FC08CC37}|BookLibraryMvcProj.csproj|c:\\users\\lenovo\\desktop\\hits\\booklibrarymvcproj\\views\\bookmvc\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{013BF16E-B93E-4D7D-925D-0387FC08CC37}|BookLibraryMvcProj.csproj|solutionrelative:views\\bookmvc\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{013BF16E-B93E-4D7D-925D-0387FC08CC37}|BookLibraryMvcProj.csproj|c:\\users\\lenovo\\desktop\\hits\\booklibrarymvcproj\\controllers\\bookborrowingmvccontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{013BF16E-B93E-4D7D-925D-0387FC08CC37}|BookLibraryMvcProj.csproj|solutionrelative:controllers\\bookborrowingmvccontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{013BF16E-B93E-4D7D-925D-0387FC08CC37}|BookLibraryMvcProj.csproj|c:\\users\\lenovo\\desktop\\hits\\booklibrarymvcproj\\models\\bookborrowing.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{013BF16E-B93E-4D7D-925D-0387FC08CC37}|BookLibraryMvcProj.csproj|solutionrelative:models\\bookborrowing.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{013BF16E-B93E-4D7D-925D-0387FC08CC37}|BookLibraryMvcProj.csproj|c:\\users\\lenovo\\desktop\\hits\\booklibrarymvcproj\\models\\book.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{013BF16E-B93E-4D7D-925D-0387FC08CC37}|BookLibraryMvcProj.csproj|solutionrelative:models\\book.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{013BF16E-B93E-4D7D-925D-0387FC08CC37}|BookLibraryMvcProj.csproj|c:\\users\\lenovo\\desktop\\hits\\booklibrarymvcproj\\views\\bookcategorymvc\\detail.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{013BF16E-B93E-4D7D-925D-0387FC08CC37}|BookLibraryMvcProj.csproj|solutionrelative:views\\bookcategorymvc\\detail.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{013BF16E-B93E-4D7D-925D-0387FC08CC37}|BookLibraryMvcProj.csproj|c:\\users\\lenovo\\desktop\\hits\\booklibrarymvcproj\\views\\bookcategorymvc\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{013BF16E-B93E-4D7D-925D-0387FC08CC37}|BookLibraryMvcProj.csproj|solutionrelative:views\\bookcategorymvc\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{013BF16E-B93E-4D7D-925D-0387FC08CC37}|BookLibraryMvcProj.csproj|c:\\users\\lenovo\\desktop\\hits\\booklibrarymvcproj\\views\\bookmvc\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{013BF16E-B93E-4D7D-925D-0387FC08CC37}|BookLibraryMvcProj.csproj|solutionrelative:views\\bookmvc\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{013BF16E-B93E-4D7D-925D-0387FC08CC37}|BookLibraryMvcProj.csproj|c:\\users\\lenovo\\desktop\\hits\\booklibrarymvcproj\\models\\bookcategory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{013BF16E-B93E-4D7D-925D-0387FC08CC37}|BookLibraryMvcProj.csproj|solutionrelative:models\\bookcategory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{013BF16E-B93E-4D7D-925D-0387FC08CC37}|BookLibraryMvcProj.csproj|c:\\users\\lenovo\\desktop\\hits\\booklibrarymvcproj\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{013BF16E-B93E-4D7D-925D-0387FC08CC37}|BookLibraryMvcProj.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{013BF16E-B93E-4D7D-925D-0387FC08CC37}|BookLibraryMvcProj.csproj|c:\\users\\lenovo\\desktop\\hits\\booklibrarymvcproj\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{013BF16E-B93E-4D7D-925D-0387FC08CC37}|BookLibraryMvcProj.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{013BF16E-B93E-4D7D-925D-0387FC08CC37}|BookLibraryMvcProj.csproj|c:\\users\\lenovo\\desktop\\hits\\booklibrarymvcproj\\controllers\\authormvccontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{013BF16E-B93E-4D7D-925D-0387FC08CC37}|BookLibraryMvcProj.csproj|solutionrelative:controllers\\authormvccontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{013BF16E-B93E-4D7D-925D-0387FC08CC37}|BookLibraryMvcProj.csproj|c:\\users\\lenovo\\desktop\\hits\\booklibrarymvcproj\\views\\bookborrowingmvc\\delete.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{013BF16E-B93E-4D7D-925D-0387FC08CC37}|BookLibraryMvcProj.csproj|solutionrelative:views\\bookborrowingmvc\\delete.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{013BF16E-B93E-4D7D-925D-0387FC08CC37}|BookLibraryMvcProj.csproj|c:\\users\\lenovo\\desktop\\hits\\booklibrarymvcproj\\views\\bookborrowingmvc\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{013BF16E-B93E-4D7D-925D-0387FC08CC37}|BookLibraryMvcProj.csproj|solutionrelative:views\\bookborrowingmvc\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{013BF16E-B93E-4D7D-925D-0387FC08CC37}|BookLibraryMvcProj.csproj|c:\\users\\lenovo\\desktop\\hits\\booklibrarymvcproj\\views\\bookborrowingmvc\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{013BF16E-B93E-4D7D-925D-0387FC08CC37}|BookLibraryMvcProj.csproj|solutionrelative:views\\bookborrowingmvc\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{013BF16E-B93E-4D7D-925D-0387FC08CC37}|BookLibraryMvcProj.csproj|c:\\users\\lenovo\\desktop\\hits\\booklibrarymvcproj\\views\\authormvc\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{013BF16E-B93E-4D7D-925D-0387FC08CC37}|BookLibraryMvcProj.csproj|solutionrelative:views\\authormvc\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{013BF16E-B93E-4D7D-925D-0387FC08CC37}|BookLibraryMvcProj.csproj|c:\\users\\lenovo\\desktop\\hits\\booklibrarymvcproj\\views\\bookmvc\\delete.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{013BF16E-B93E-4D7D-925D-0387FC08CC37}|BookLibraryMvcProj.csproj|solutionrelative:views\\bookmvc\\delete.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\lenovo\\Desktop\\Hits\\BookLibraryMvcProj\\Views\\Home\\Index.cshtml",
+              "RelativeDocumentMoniker": "Views\\Home\\Index.cshtml",
+              "ToolTip": "C:\\Users\\lenovo\\Desktop\\Hits\\BookLibraryMvcProj\\Views\\Home\\Index.cshtml",
+              "RelativeToolTip": "Views\\Home\\Index.cshtml",
+              "ViewState": "AQIAAKkAAAAAAAAAAAAAALIAAAASAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-08-21T10:54:30.112Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "HomeController.cs",
+              "DocumentMoniker": "C:\\Users\\lenovo\\Desktop\\Hits\\BookLibraryMvcProj\\Controllers\\HomeController.cs",
+              "RelativeDocumentMoniker": "Controllers\\HomeController.cs",
+              "ToolTip": "C:\\Users\\lenovo\\Desktop\\Hits\\BookLibraryMvcProj\\Controllers\\HomeController.cs",
+              "RelativeToolTip": "Controllers\\HomeController.cs",
+              "ViewState": "AQIAAFQAAAAAAAAAAAAiwHIAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-21T10:53:59.495Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "BookMvcController.cs",
+              "DocumentMoniker": "C:\\Users\\lenovo\\Desktop\\Hits\\BookLibraryMvcProj\\Controllers\\BookMvcController.cs",
+              "RelativeDocumentMoniker": "Controllers\\BookMvcController.cs",
+              "ToolTip": "C:\\Users\\lenovo\\Desktop\\Hits\\BookLibraryMvcProj\\Controllers\\BookMvcController.cs",
+              "RelativeToolTip": "Controllers\\BookMvcController.cs",
+              "ViewState": "AQIAABEAAAAAAAAAAAAiwBAAAAAVAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-20T10:33:59.431Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Author.cs",
+              "DocumentMoniker": "C:\\Users\\lenovo\\Desktop\\Hits\\BookLibraryMvcProj\\Models\\Author.cs",
+              "RelativeDocumentMoniker": "Models\\Author.cs",
+              "ToolTip": "C:\\Users\\lenovo\\Desktop\\Hits\\BookLibraryMvcProj\\Models\\Author.cs",
+              "RelativeToolTip": "Models\\Author.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-19T10:19:00.894Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Edit.cshtml",
+              "DocumentMoniker": "C:\\Users\\lenovo\\Desktop\\Hits\\BookLibraryMvcProj\\Views\\BookMvc\\Edit.cshtml",
+              "RelativeDocumentMoniker": "Views\\BookMvc\\Edit.cshtml",
+              "ToolTip": "C:\\Users\\lenovo\\Desktop\\Hits\\BookLibraryMvcProj\\Views\\BookMvc\\Edit.cshtml",
+              "RelativeToolTip": "Views\\BookMvc\\Edit.cshtml",
+              "ViewState": "AQIAABkAAAAAAAAAAAAuwCEAAAAVAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-08-20T10:43:42.069Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Details.cshtml",
+              "DocumentMoniker": "C:\\Users\\lenovo\\Desktop\\Hits\\BookLibraryMvcProj\\Views\\BookMvc\\Details.cshtml",
+              "RelativeDocumentMoniker": "Views\\BookMvc\\Details.cshtml",
+              "ToolTip": "C:\\Users\\lenovo\\Desktop\\Hits\\BookLibraryMvcProj\\Views\\BookMvc\\Details.cshtml",
+              "RelativeToolTip": "Views\\BookMvc\\Details.cshtml",
+              "ViewState": "AQIAAIwAAAAAAAAAAAAuwJgAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-08-20T09:53:02.436Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "BookCategoryController.cs",
+              "DocumentMoniker": "C:\\Users\\lenovo\\Desktop\\Hits\\BookLibraryMvcProj\\Controllers\\BookCategoryController.cs",
+              "RelativeDocumentMoniker": "Controllers\\BookCategoryController.cs",
+              "ToolTip": "C:\\Users\\lenovo\\Desktop\\Hits\\BookLibraryMvcProj\\Controllers\\BookCategoryController.cs",
+              "RelativeToolTip": "Controllers\\BookCategoryController.cs",
+              "ViewState": "AQIAANMAAAAAAAAAAAAqwOwAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-21T09:39:52.383Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Create.cshtml",
+              "DocumentMoniker": "C:\\Users\\lenovo\\Desktop\\Hits\\BookLibraryMvcProj\\Views\\BookMvc\\Create.cshtml",
+              "RelativeDocumentMoniker": "Views\\BookMvc\\Create.cshtml",
+              "ToolTip": "C:\\Users\\lenovo\\Desktop\\Hits\\BookLibraryMvcProj\\Views\\BookMvc\\Create.cshtml",
+              "RelativeToolTip": "Views\\BookMvc\\Create.cshtml",
+              "ViewState": "AQIAABEAAAAAAAAAAAAAACIAAAARAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-08-20T10:43:49.802Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "BookBorrowingMvcController.cs",
+              "DocumentMoniker": "C:\\Users\\lenovo\\Desktop\\Hits\\BookLibraryMvcProj\\Controllers\\BookBorrowingMvcController.cs",
+              "RelativeDocumentMoniker": "Controllers\\BookBorrowingMvcController.cs",
+              "ToolTip": "C:\\Users\\lenovo\\Desktop\\Hits\\BookLibraryMvcProj\\Controllers\\BookBorrowingMvcController.cs",
+              "RelativeToolTip": "Controllers\\BookBorrowingMvcController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAADcAAAA6AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-19T10:21:29.688Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "BookBorrowing.cs",
+              "DocumentMoniker": "C:\\Users\\lenovo\\Desktop\\Hits\\BookLibraryMvcProj\\Models\\BookBorrowing.cs",
+              "RelativeDocumentMoniker": "Models\\BookBorrowing.cs",
+              "ToolTip": "C:\\Users\\lenovo\\Desktop\\Hits\\BookLibraryMvcProj\\Models\\BookBorrowing.cs",
+              "RelativeToolTip": "Models\\BookBorrowing.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-19T10:19:27.829Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Book.cs",
+              "DocumentMoniker": "C:\\Users\\lenovo\\Desktop\\Hits\\BookLibraryMvcProj\\Models\\Book.cs",
+              "RelativeDocumentMoniker": "Models\\Book.cs",
+              "ToolTip": "C:\\Users\\lenovo\\Desktop\\Hits\\BookLibraryMvcProj\\Models\\Book.cs",
+              "RelativeToolTip": "Models\\Book.cs",
+              "ViewState": "AQIAAAcAAAAAAAAAAAAwwA0AAAAUAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-19T10:19:34.658Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "Detail.cshtml",
+              "DocumentMoniker": "C:\\Users\\lenovo\\Desktop\\Hits\\BookLibraryMvcProj\\Views\\BookCategoryMvc\\Detail.cshtml",
+              "RelativeDocumentMoniker": "Views\\BookCategoryMvc\\Detail.cshtml",
+              "ToolTip": "C:\\Users\\lenovo\\Desktop\\Hits\\BookLibraryMvcProj\\Views\\BookCategoryMvc\\Detail.cshtml",
+              "RelativeToolTip": "Views\\BookCategoryMvc\\Detail.cshtml",
+              "ViewState": "AQIAAAoAAAAAAAAAAAAqwBMAAAAGAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-08-21T09:43:15.232Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\lenovo\\Desktop\\Hits\\BookLibraryMvcProj\\Views\\BookCategoryMvc\\Index.cshtml",
+              "RelativeDocumentMoniker": "Views\\BookCategoryMvc\\Index.cshtml",
+              "ToolTip": "C:\\Users\\lenovo\\Desktop\\Hits\\BookLibraryMvcProj\\Views\\BookCategoryMvc\\Index.cshtml",
+              "RelativeToolTip": "Views\\BookCategoryMvc\\Index.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAADQAAAAZAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-08-21T09:42:33.782Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\lenovo\\Desktop\\Hits\\BookLibraryMvcProj\\appsettings.json",
+              "RelativeDocumentMoniker": "appsettings.json",
+              "ToolTip": "C:\\Users\\lenovo\\Desktop\\Hits\\BookLibraryMvcProj\\appsettings.json",
+              "RelativeToolTip": "appsettings.json",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-08-19T10:21:48.77Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "BookCategory.cs",
+              "DocumentMoniker": "C:\\Users\\lenovo\\Desktop\\Hits\\BookLibraryMvcProj\\Models\\BookCategory.cs",
+              "RelativeDocumentMoniker": "Models\\BookCategory.cs",
+              "ToolTip": "C:\\Users\\lenovo\\Desktop\\Hits\\BookLibraryMvcProj\\Models\\BookCategory.cs",
+              "RelativeToolTip": "Models\\BookCategory.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-21T09:19:09.612Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\lenovo\\Desktop\\Hits\\BookLibraryMvcProj\\Views\\BookMvc\\Index.cshtml",
+              "RelativeDocumentMoniker": "Views\\BookMvc\\Index.cshtml",
+              "ToolTip": "C:\\Users\\lenovo\\Desktop\\Hits\\BookLibraryMvcProj\\Views\\BookMvc\\Index.cshtml",
+              "RelativeToolTip": "Views\\BookMvc\\Index.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABMAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-08-19T10:38:31.409Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\lenovo\\Desktop\\Hits\\BookLibraryMvcProj\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "C:\\Users\\lenovo\\Desktop\\Hits\\BookLibraryMvcProj\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAAADQAAAAgAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-19T10:33:33.153Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "Delete.cshtml",
+              "DocumentMoniker": "C:\\Users\\lenovo\\Desktop\\Hits\\BookLibraryMvcProj\\Views\\BookBorrowingMvc\\Delete.cshtml",
+              "RelativeDocumentMoniker": "Views\\BookBorrowingMvc\\Delete.cshtml",
+              "ToolTip": "C:\\Users\\lenovo\\Desktop\\Hits\\BookLibraryMvcProj\\Views\\BookBorrowingMvc\\Delete.cshtml",
+              "RelativeToolTip": "Views\\BookBorrowingMvc\\Delete.cshtml",
+              "ViewState": "AQIAAJYAAAAAAAAAAAAuwKMAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-08-19T11:36:31.263Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "AuthorMvcController.cs",
+              "DocumentMoniker": "C:\\Users\\lenovo\\Desktop\\Hits\\BookLibraryMvcProj\\Controllers\\AuthorMvcController.cs",
+              "RelativeDocumentMoniker": "Controllers\\AuthorMvcController.cs",
+              "ToolTip": "C:\\Users\\lenovo\\Desktop\\Hits\\BookLibraryMvcProj\\Controllers\\AuthorMvcController.cs",
+              "RelativeToolTip": "Controllers\\AuthorMvcController.cs",
+              "ViewState": "AQIAACwAAAAAAAAAAAAwwCYAAAA0AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-20T10:29:53.146Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "Edit.cshtml",
+              "DocumentMoniker": "C:\\Users\\lenovo\\Desktop\\Hits\\BookLibraryMvcProj\\Views\\BookBorrowingMvc\\Edit.cshtml",
+              "RelativeDocumentMoniker": "Views\\BookBorrowingMvc\\Edit.cshtml",
+              "ToolTip": "C:\\Users\\lenovo\\Desktop\\Hits\\BookLibraryMvcProj\\Views\\BookBorrowingMvc\\Edit.cshtml",
+              "RelativeToolTip": "Views\\BookBorrowingMvc\\Edit.cshtml",
+              "ViewState": "AQIAAO8AAAAAAAAAAAAAACUBAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-08-20T10:55:40.531Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\lenovo\\Desktop\\Hits\\BookLibraryMvcProj\\Views\\BookBorrowingMvc\\Index.cshtml",
+              "RelativeDocumentMoniker": "Views\\BookBorrowingMvc\\Index.cshtml",
+              "ToolTip": "C:\\Users\\lenovo\\Desktop\\Hits\\BookLibraryMvcProj\\Views\\BookBorrowingMvc\\Index.cshtml",
+              "RelativeToolTip": "Views\\BookBorrowingMvc\\Index.cshtml",
+              "ViewState": "AQIAABEBAAAAAAAAAAAuwC4BAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-08-19T11:24:31.053Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\lenovo\\Desktop\\Hits\\BookLibraryMvcProj\\Views\\AuthorMvc\\Index.cshtml",
+              "RelativeDocumentMoniker": "Views\\AuthorMvc\\Index.cshtml",
+              "ToolTip": "C:\\Users\\lenovo\\Desktop\\Hits\\BookLibraryMvcProj\\Views\\AuthorMvc\\Index.cshtml",
+              "RelativeToolTip": "Views\\AuthorMvc\\Index.cshtml",
+              "ViewState": "AQIAAGABAAAAAAAAAAAAAHUBAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-08-20T08:49:23.676Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "Delete.cshtml",
+              "DocumentMoniker": "C:\\Users\\lenovo\\Desktop\\Hits\\BookLibraryMvcProj\\Views\\BookMvc\\Delete.cshtml",
+              "RelativeDocumentMoniker": "Views\\BookMvc\\Delete.cshtml",
+              "ToolTip": "C:\\Users\\lenovo\\Desktop\\Hits\\BookLibraryMvcProj\\Views\\BookMvc\\Delete.cshtml",
+              "RelativeToolTip": "Views\\BookMvc\\Delete.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-08-20T10:27:53.121Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

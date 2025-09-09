@@ -1,0 +1,20 @@
+﻿@model BookLibraryMvcProj.Models.Author
+
+@{
+    ViewData["Title"] = "Create Author";
+}
+
+<div class="container mt-4">
+    <h2 class="text-success">➕ Add New Author</h2>
+
+    <form asp-action="Create" method="post" class="p-4 border rounded shadow bg-light">
+        <div class="mb-3">
+            <label asp-for="Name" class="form-label fw-bold"></label>
+            <input asp-for="Name" class="form-control" placeholder="Enter author name" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+
+        <button type="submit" class="btn btn-success">Save</button>
+        <a asp-action="Index" class="btn btn-secondary">Back</a>
+    </form>
+</div>

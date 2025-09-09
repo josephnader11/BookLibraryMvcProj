@@ -1,0 +1,65 @@
+﻿@model List<BookLibraryMvcProj.Models.BookCategory>
+
+@{
+    ViewData["Title"] = "Book Categories";
+}
+
+<div class="container mt-4">
+    <h2 class="text-info">📚 Book Categories</h2>
+
+    <div class="mb-3">
+        <a asp-action="Create" class="btn btn-success">➕ Create New Category</a>
+    </div>
+
+    @if (ViewBag.ErrorMessage != null)
+    {
+        <div class="alert alert-danger">@ViewBag.ErrorMessage</div>
+    }
+
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success">@TempData["SuccessMessage"]</div>
+    }
+
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger">@TempData["ErrorMessage"]</div>
+    }
+
+    <div class="card shadow-lg">
+        <div class="card-body">
+            <table class="table table-striped">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model != null && Model.Any())
+                    {
+                        @foreach (var category in Model)
+                        {
+                            <tr>
+                                <td>@category.BookCategoryId</td>
+                                <td>@category.Name</td>
+                                <td>
+                                    <a asp-action="Details" asp-route-id="@category.BookCategoryId" class="btn btn-info btn-sm">👁 Details</a>
+                                    <a asp-action="Edit" asp-route-id="@category.BookCategoryId" class="btn btn-warning btn-sm">✏️ Edit</a>
+                                    <a asp-action="Delete" asp-route-id="@category.BookCategoryId" class="btn btn-danger btn-sm">🗑️ Delete</a>
+                                </td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="3" class="text-center">No categories found.</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

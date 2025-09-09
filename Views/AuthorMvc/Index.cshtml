@@ -1,0 +1,381 @@
+﻿@model IEnumerable<BookLibraryMvcProj.Models.Author>
+
+@{
+    ViewData["Title"] = "Authors";
+}
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-12">
+            <!-- Header -->
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2 class="text-primary">
+                    <i class="fas fa-user-tie"></i> 👨‍💼 Authors
+                    <span id="authorCount" class="badge bg-primary ms-2">@Model.Count()</span>
+                </h2>
+                <a asp-action="Create" class="btn btn-success">
+                    <i class="fas fa-plus"></i> ➕ Add Author
+                </a>
+            </div>
+
+            <!-- Search Bar -->
+            <div class="card mb-4 shadow-sm">
+                <div class="card-body">
+                    <div class="row align-items-center">
+                        <div class="col-md-8">
+                            <div class="input-group input-group-lg">
+                                <span class="input-group-text bg-primary text-white">
+                                    <i class="fas fa-search"></i>
+                                </span>
+                                <input type="text"
+                                       id="authorSearch"
+                                       class="form-control form-control-lg"
+                                       placeholder="🔍 Search authors by name..."
+                                       autocomplete="off">
+                                <button class="btn btn-outline-secondary" type="button" id="clearSearch">
+                                    <i class="fas fa-times"></i> Clear
+                                </button>
+                            </div>
+                            <small class="text-muted mt-1 d-block">
+                                <i class="fas fa-info-circle"></i>
+                                Type to search instantly by author name
+                            </small>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="text-end">
+                                <div id="searchResults" class="h5 mb-0 text-info">
+                                    <i class="fas fa-list"></i>
+                                    Showing <span id="visibleCount">@Model.Count()</span> of <span id="totalCount">@Model.Count()</span> authors
+                                </div>
+                                <small class="text-muted">Search results</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Authors Table -->
+            <div class="card shadow">
+                <div class="card-body p-0">
+                    @if (Model != null && Model.Any())
+                    {
+                        <div class="table-responsive">
+                            <table class="table table-hover table-bordered mb-0" id="authorsTable">
+                                <thead class="table-dark">
+                                    <tr>
+                                        <th><i class="fas fa-hashtag"></i> Author ID</th>
+                                        <th><i class="fas fa-user"></i> Name</th>
+                                        <th><i class="fas fa-books"></i> Books Count</th>
+                                        <th><i class="fas fa-cogs"></i> Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="authorsTableBody">
+                                    @foreach (var author in Model)
+                                    {
+                                        <tr data-author-name="@author.Name?.ToLower()">
+                                            <td>
+                                                <span class="badge bg-primary">#@author.AuthorId</span>
+                                            </td>
+                                            <td>
+                                                <div class="d-flex align-items-center">
+                                                    <div class="avatar-circle bg-info text-white me-2">
+                                                        @(author.Name?.Substring(0, 1).ToUpper() ?? "?")
+                                                    </div>
+                                                    <strong class="author-name">@author.Name</strong>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                @if ((author.Books?.Count ?? 0) > 0)
+                                                {
+                                                    <span class="badge bg-success fs-6">
+                                                        <i class="fas fa-book"></i> @(author.Books?.Count ?? 0) books
+                                                    </span>
+                                                }
+                                                else
+                                                {
+                                                    <span class="badge bg-secondary fs-6">
+                                                        <i class="fas fa-book-open"></i> No books
+                                                    </span>
+                                                }
+                                            </td>
+                                            <td>
+                                                <div class="btn-group" role="group">
+                                                    <a asp-action="Details" asp-route-id="@author.AuthorId"
+                                                       class="btn btn-info btn-sm" title="View Details">
+                                                        <i class="fas fa-eye"></i> Details
+                                                    </a>
+                                                    <a asp-action="Edit" asp-route-id="@author.AuthorId"
+                                                       class="btn btn-warning btn-sm" title="Edit Author">
+                                                        <i class="fas fa-edit"></i> Edit
+                                                    </a>
+                                                    <a asp-action="Delete" asp-route-id="@author.AuthorId"
+                                                       class="btn btn-danger btn-sm" title="Delete Author">
+                                                        <i class="fas fa-trash"></i> Delete
+                                                    </a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="text-center py-5">
+                            <i class="fas fa-user-times fa-3x text-muted mb-3"></i>
+                            <h4 class="text-muted">No authors found</h4>
+                            <p class="text-muted">Start by adding your first author!</p>
+                            <a asp-action="Create" class="btn btn-success btn-lg">
+                                <i class="fas fa-plus"></i> Add First Author
+                            </a>
+                        </div>
+                    }
+                </div>
+            </div>
+
+            <!-- No Results Message -->
+            <div id="noResultsMessage" class="card border-warning d-none mt-3">
+                <div class="card-body text-center py-4">
+                    <i class="fas fa-search-minus fa-3x text-warning mb-3"></i>
+                    <h4 class="text-warning">No authors found</h4>
+                    <p class="text-muted mb-0">
+                        No authors match your search criteria "<span id="searchTerm" class="fw-bold text-primary"></span>".
+                        <br>Try a different search term.
+                    </p>
+                    <button class="btn btn-outline-primary mt-3" onclick="clearSearch()">
+                        <i class="fas fa-times"></i> Clear Search
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            const searchInput = $('#authorSearch');
+            const tableBody = $('#authorsTableBody');
+            const noResultsMessage = $('#noResultsMessage');
+            const visibleCountSpan = $('#visibleCount');
+            const totalCount = @Model.Count();
+
+            // Search functionality
+            searchInput.on('input', function () {
+                performSearch();
+            });
+
+            // Clear search button
+            $('#clearSearch').on('click', function () {
+                clearSearch();
+            });
+
+            // Clear search on Escape key
+            searchInput.on('keydown', function (e) {
+                if (e.key === 'Escape') {
+                    clearSearch();
+                }
+            });
+
+            function performSearch() {
+                const searchTerm = searchInput.val().toLowerCase().trim();
+                let visibleRows = 0;
+
+                if (searchTerm === '') {
+                    // Show all rows
+                    tableBody.find('tr').show();
+                    visibleRows = totalCount;
+                    noResultsMessage.addClass('d-none');
+                } else {
+                    // Filter rows
+                    tableBody.find('tr').each(function () {
+                        const authorName = $(this).data('author-name') || '';
+
+                        if (authorName.includes(searchTerm)) {
+                            $(this).show();
+                            visibleRows++;
+
+                            // Highlight search term
+                            highlightSearchTerm($(this), searchTerm);
+                        } else {
+                            $(this).hide();
+                        }
+                    });
+
+                    // Show/hide no results message
+                    if (visibleRows === 0) {
+                        noResultsMessage.removeClass('d-none');
+                        $('#searchTerm').text(searchInput.val());
+                    } else {
+                        noResultsMessage.addClass('d-none');
+                    }
+                }
+
+                // Update counters
+                updateCounters(visibleRows);
+
+                // Add search highlighting to input
+                if (searchTerm !== '') {
+                    searchInput.addClass('border-primary');
+                } else {
+                    searchInput.removeClass('border-primary');
+                }
+            }
+
+            function highlightSearchTerm(row, searchTerm) {
+                const nameCell = row.find('.author-name');
+                const originalText = nameCell.data('original-text') || nameCell.text();
+
+                // Store original text if not already stored
+                if (!nameCell.data('original-text')) {
+                    nameCell.data('original-text', originalText);
+                }
+
+                if (searchTerm !== '') {
+                    const regex = new RegExp(`(${escapeRegExp(searchTerm)})`, 'gi');
+                    const highlightedText = originalText.replace(regex, '<mark class="bg-warning text-dark">$1</mark>');
+                    nameCell.html(highlightedText);
+                } else {
+                    nameCell.html(originalText);
+                }
+            }
+
+            function escapeRegExp(string) {
+                return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+            }
+
+            function updateCounters(visibleCount) {
+                visibleCountSpan.text(visibleCount);
+
+                // Update counter colors
+                if (visibleCount === 0) {
+                    $('#searchResults').removeClass('text-info text-success').addClass('text-warning');
+                } else if (visibleCount === totalCount) {
+                    $('#searchResults').removeClass('text-warning text-success').addClass('text-info');
+                } else {
+                    $('#searchResults').removeClass('text-info text-warning').addClass('text-success');
+                }
+            }
+
+            function clearSearch() {
+                searchInput.val('').removeClass('border-primary').focus();
+                tableBody.find('tr').show();
+
+                // Remove highlights
+                tableBody.find('.author-name').each(function () {
+                    const originalText = $(this).data('original-text');
+                    if (originalText) {
+                        $(this).html(originalText);
+                    }
+                });
+
+                noResultsMessage.addClass('d-none');
+                updateCounters(totalCount);
+            }
+
+            // Make clearSearch globally available
+            window.clearSearch = clearSearch;
+
+            // Focus search input on Ctrl+F
+            $(document).on('keydown', function (e) {
+                if (e.ctrlKey && e.key === 'f') {
+                    e.preventDefault();
+                    searchInput.focus();
+                }
+            });
+
+            // Auto-focus search input when page loads
+            searchInput.focus();
+        });
+    </script>
+
+    <style>
+        /* Search bar styling */
+        .input-group-lg .form-control {
+            font-size: 1.1rem;
+        }
+
+        .input-group-text {
+            border: none;
+        }
+
+        /* Avatar circles */
+        .avatar-circle {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        /* Table enhancements */
+        .table th {
+            background: linear-gradient(135deg, #343a40 0%, #495057 100%);
+            color: white;
+            font-weight: 600;
+            border-top: none;
+        }
+
+        .table-hover tbody tr:hover {
+            background-color: rgba(0,123,255,0.1) !important;
+            transform: scale(1.01);
+            transition: all 0.2s ease;
+        }
+
+        /* Badge styling */
+        .badge {
+            font-size: 0.85em;
+            padding: 0.5em 0.8em;
+        }
+
+        /* Button group styling */
+        .btn-group .btn {
+            margin-right: 2px;
+        }
+
+        /* Card styling */
+        .card {
+            border-radius: 15px;
+            border: none;
+        }
+
+        /* Search highlighting */
+        mark {
+            padding: 0.1em 0.2em;
+            border-radius: 3px;
+        }
+
+        /* Search input focus */
+        .form-control:focus {
+            border-color: #007bff;
+            box-shadow: 0 0 0 0.2rem rgba(0,123,255,0.25);
+        }
+
+        /* Counter styling */
+        #searchResults {
+            transition: color 0.3s ease;
+        }
+
+        /* No results message */
+        .border-warning {
+            border-color: #ffc107 !important;
+        }
+
+        /* Responsive adjustments */
+        @@media (max-width: 768px) {
+            .d-flex.justify-content-between {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            #searchResults {
+                text-align: center !important;
+                margin-top: 15px;
+            }
+        }
+    </style>
+}

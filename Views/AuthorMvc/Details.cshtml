@@ -1,0 +1,31 @@
+﻿@model BookLibraryMvcProj.Models.Author
+
+@{
+    ViewData["Title"] = "Author Details";
+}
+
+<div class="container mt-4">
+    <h2 class="text-primary">👨‍💼 Author Details</h2>
+
+    <div class="card shadow p-3 mb-3 bg-light rounded">
+        <h4>ID: @Model.AuthorId</h4>
+        <h4>Name: @Model.Name</h4>
+        <h5>Books:</h5>
+        <ul class="list-group list-group-flush">
+            @if (Model.Books != null && Model.Books.Count > 0)
+            {
+                foreach (var book in Model.Books)
+                {
+                    <li class="list-group-item">@book.Title (@book.Year)</li>
+                }
+            }
+            else
+            {
+                <li class="list-group-item text-muted">No books found</li>
+            }
+        </ul>
+    </div>
+
+    <a asp-action="Index" class="btn btn-secondary">⬅ Back</a>
+    <a asp-action="Edit" asp-route-id="@Model.AuthorId" class="btn btn-warning">✏ Edit</a>
+</div>
